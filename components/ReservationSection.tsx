@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -169,26 +170,28 @@ export default function ReservationSection() {
           Join us for an evening shaped by fire, flavour and atmosphere.
         </p>
 
-        <button
-          className="
-            mt-10
-            border
-            border-white/40
-            bg-black/10
-            px-8
-            py-4
-            text-[9px]
-            uppercase
-            tracking-[0.4em]
-            backdrop-blur-sm
-            transition
-            duration-300
-            hover:bg-white
-            hover:text-black
-          "
-        >
-          Reserve a table
-        </button>
+       <Link
+  href="/reservations"
+  className="
+    mt-10
+    inline-block
+    border
+    border-white/40
+    bg-black/10
+    px-8
+    py-4
+    text-[9px]
+    uppercase
+    tracking-[0.4em]
+    backdrop-blur-sm
+    transition
+    duration-300
+    hover:bg-white
+    hover:text-black
+  "
+>
+  Reserve a table
+</Link>
       </div>
     </section>
   );
