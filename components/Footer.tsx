@@ -102,9 +102,7 @@ export default function Footer() {
           <p>© 2026 Noir Steakhouse</p>
 
           <div className="flex gap-6">
-            <a href="#" className="transition hover:text-white/70">
-              Instagram
-            </a>
+            
 
             <a href="#" className="transition hover:text-white/70">
               Privacy
