@@ -98,6 +98,7 @@ export default function Footer() {
             md:justify-between
           "
         >
+          
           <p>© 2026 Noir Steakhouse</p>
 
           <div className="flex gap-6">
@@ -109,6 +110,17 @@ export default function Footer() {
               Privacy
             </a>
           </div>
+            <p className="text-[9px] uppercase tracking-[0.28em] text-white/30">
+  Digital experience by{" "}
+  <a
+    href="https://webbitis.com"
+    target="_blank"
+    rel="noreferrer"
+    className="text-white/55 transition hover:text-white"
+  >
+    Webbitis
+  </a>
+</p>
         </div>
       </div>
     </footer>
