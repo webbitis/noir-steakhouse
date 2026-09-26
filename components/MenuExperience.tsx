@@ -12,39 +12,83 @@ const dishes = [
     name: "RIBEYE",
     subtitle: "45 DAY DRY AGED",
     description: "Deep flavour · Open flame · Sea salt",
-    price: "78$",
+    price: "$78",
     bg: "/media/ribeye.png",
     cutout: "/media/ribeye-cutout.png",
     titleClass:
       "text-[24vw] sm:text-[21vw] md:text-[17vw] lg:text-[15vw] xl:text-[14vw]",
-    steakClass:
+    dishClass:
       "w-[76vw] sm:w-[72vw] md:w-[46vw] lg:w-[43vw] xl:w-[40vw] xl:max-w-[760px]",
   },
+
   {
     number: "02",
     name: "TOMAHAWK",
     subtitle: "OPEN FIRE · 1.2 KG",
     description: "Oak smoke · Charred crust · Bone aged",
-    price: "115$",
+    price: "$115",
     bg: "/media/tomahawk-bg.png",
     cutout: "/media/tomahawk-cutout.png",
     titleClass:
       "text-[18vw] sm:text-[16vw] md:text-[12vw] lg:text-[10vw] xl:text-[9vw]",
-    steakClass:
+    dishClass:
       "w-[88vw] sm:w-[82vw] md:w-[58vw] lg:w-[54vw] xl:w-[50vw] xl:max-w-[980px]",
   },
+
   {
     number: "03",
     name: "FILET",
     subtitle: "CENTER CUT · TENDER",
     description: "Velvet texture · Fine sear · Rosemary glaze",
-    price: "68$",
+    price: "$68",
     bg: "/media/filet-bg.png",
     cutout: "/media/filet-cutout.png",
     titleClass:
       "text-[24vw] sm:text-[22vw] md:text-[17vw] lg:text-[15vw] xl:text-[14vw]",
-    steakClass:
+    dishClass:
       "w-[64vw] sm:w-[58vw] md:w-[36vw] lg:w-[32vw] xl:w-[28vw] xl:max-w-[560px]",
+  },
+
+  {
+    number: "04",
+    name: "CHARRED OCTOPUS",
+    subtitle: "FIRE CHARRED · SMOKED PAPRIKA",
+    description: "Potato cream · Herbs · Smoked paprika",
+    price: "$29",
+    bg: "/media/octopus-bg.png",
+    cutout: "/media/octopus-cutout.png",
+    titleClass:
+      "text-[13vw] sm:text-[12vw] md:text-[8vw] lg:text-[7vw] xl:text-[6.5vw]",
+    dishClass:
+      "w-[90vw] sm:w-[82vw] md:w-[55vw] lg:w-[50vw] xl:w-[46vw] xl:max-w-[850px]",
+  },
+
+  {
+    number: "05",
+    name: "TRUFFLE TAGLIATELLE",
+    subtitle: "BLACK TRUFFLE · PARMESAN",
+    description: "Fresh pasta · Parmesan · Black truffle",
+    price: "$28",
+    bg: "/media/truffle-bg.png",
+    cutout: "/media/truffle-cutout.png",
+    titleClass:
+      "text-[11vw] sm:text-[10vw] md:text-[7vw] lg:text-[6vw] xl:text-[5.5vw]",
+    dishClass:
+      "w-[88vw] sm:w-[80vw] md:w-[54vw] lg:w-[48vw] xl:w-[44vw] xl:max-w-[820px]",
+  },
+
+  {
+    number: "06",
+    name: "BURNT CHEESECAKE",
+    subtitle: "CARAMELISED · CREAMY",
+    description: "Vanilla · Caramel · Sea salt",
+    price: "$16",
+    bg: "/media/burnt-cheesecake-bg.png",
+    cutout: "/media/burnt-cheesecake-cutout.png",
+    titleClass:
+      "text-[12vw] sm:text-[11vw] md:text-[8vw] lg:text-[7vw] xl:text-[6vw]",
+    dishClass:
+      "w-[82vw] sm:w-[74vw] md:w-[48vw] lg:w-[43vw] xl:w-[39vw] xl:max-w-[720px]",
   },
 ];
 
@@ -52,9 +96,8 @@ export default function MenuExperience() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const sceneRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const steakRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const dishRefs = useRef<(HTMLImageElement | null)[]>([]);
   const titleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
-  const infoRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -63,14 +106,10 @@ export default function MenuExperience() {
 
     const ctx = gsap.context(() => {
       const scenes = sceneRefs.current;
-      const steaks = steakRefs.current;
+      const images = dishRefs.current;
       const titles = titleRefs.current;
-      const infos = infoRefs.current;
 
-      // =========================
       // INITIAL STATE
-      // =========================
-
       scenes.forEach((scene, index) => {
         if (!scene) return;
 
@@ -80,33 +119,22 @@ export default function MenuExperience() {
         });
       });
 
-      steaks.forEach((steak, index) => {
-        if (!steak) return;
+      images.forEach((image) => {
+        if (!image) return;
 
-        gsap.set(steak, {
-          opacity: index === 0 ? 0 : 1,
-          scale: index === 0 ? 0.88 : 1,
-          yPercent: index === 0 ? 10 : 0,
+        gsap.set(image, {
+          scale: 1,
+          yPercent: 0,
           rotate: 0,
         });
       });
 
-      titles.forEach((title, index) => {
+      titles.forEach((title) => {
         if (!title) return;
 
         gsap.set(title, {
-          opacity: index === 0 ? 0 : 1,
-          scale: index === 0 ? 0.94 : 1,
-          yPercent: index === 0 ? 6 : 0,
-        });
-      });
-
-      infos.forEach((info, index) => {
-        if (!info) return;
-
-        gsap.set(info, {
-          opacity: index === 0 ? 0 : 1,
-          y: index === 0 ? 18 : 0,
+          scale: 1,
+          yPercent: 0,
         });
       });
 
@@ -120,311 +148,179 @@ export default function MenuExperience() {
         },
       });
 
-      // =========================
-      // RIBEYE IN
-      // =========================
-
+      // FIRST DISH HOLD
       tl.to(
-        titles[0],
+        images[0],
         {
-          opacity: 0.92,
-          scale: 1,
-          yPercent: 0,
-          duration: 0.18,
+          scale: 1.06,
+          yPercent: -2,
+          duration: 0.8,
           ease: "none",
         },
         0
       );
 
       tl.to(
-        steaks[0],
-        {
-          opacity: 1,
-          scale: 1,
-          yPercent: 0,
-          duration: 0.22,
-          ease: "none",
-        },
-        0.03
-      );
-
-      tl.to(
-        infos[0],
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.16,
-          ease: "none",
-        },
-        0.08
-      );
-
-      // =========================
-      // RIBEYE HOLD
-      // =========================
-
-      tl.to(
-        steaks[0],
-        {
-          scale: 1.05,
-          yPercent: -2,
-          duration: 0.55,
-          ease: "none",
-        },
-        0.22
-      );
-
-      tl.to(
         titles[0],
-        {
-          scale: 1.03,
-          yPercent: -2,
-          duration: 0.55,
-          ease: "none",
-        },
-        0.22
-      );
-
-      // =========================
-      // RIBEYE OUT
-      // =========================
-
-      tl.to(
-        scenes[0],
-        {
-          opacity: 0,
-          duration: 0.16,
-          ease: "none",
-        },
-        0.77
-      );
-
-      tl.set(scenes[0], {
-        visibility: "hidden",
-      });
-
-      // tiny black pause
-      tl.to({}, { duration: 0.06 });
-
-      // =========================
-      // TOMAHAWK IN
-      // =========================
-
-      tl.set(scenes[1], {
-        visibility: "visible",
-      });
-
-      tl.fromTo(
-        scenes[1],
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          duration: 0.16,
-          ease: "none",
-        }
-      );
-
-      tl.fromTo(
-        steaks[1],
-        {
-          scale: 0.9,
-          yPercent: 8,
-          rotate: -2,
-        },
-        {
-          scale: 1,
-          yPercent: 0,
-          rotate: 0,
-          duration: 0.28,
-          ease: "none",
-        },
-        "<"
-      );
-
-      tl.fromTo(
-        titles[1],
-        {
-          scale: 0.96,
-          yPercent: 5,
-        },
-        {
-          scale: 1,
-          yPercent: 0,
-          duration: 0.28,
-          ease: "none",
-        },
-        "<"
-      );
-
-      // =========================
-      // TOMAHAWK HOLD
-      // =========================
-
-      tl.to(steaks[1], {
-        scale: 1.05,
-        yPercent: -2,
-        rotate: 0.5,
-        duration: 0.7,
-        ease: "none",
-      });
-
-      tl.to(
-        titles[1],
-        {
-          scale: 1.03,
-          yPercent: -2,
-          duration: 0.7,
-          ease: "none",
-        },
-        "<"
-      );
-
-      // =========================
-      // TOMAHAWK OUT
-      // =========================
-
-      tl.to(scenes[1], {
-        opacity: 0,
-        duration: 0.16,
-        ease: "none",
-      });
-
-      tl.set(scenes[1], {
-        visibility: "hidden",
-      });
-
-      tl.to({}, { duration: 0.06 });
-
-      // =========================
-      // FILET IN
-      // =========================
-
-      tl.set(scenes[2], {
-        visibility: "visible",
-      });
-
-      tl.fromTo(
-        scenes[2],
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          duration: 0.16,
-          ease: "none",
-        }
-      );
-
-      tl.fromTo(
-        steaks[2],
-        {
-          scale: 0.86,
-          yPercent: 10,
-          rotate: -2,
-        },
-        {
-          scale: 1,
-          yPercent: 0,
-          rotate: 0,
-          duration: 0.3,
-          ease: "none",
-        },
-        "<"
-      );
-
-      tl.fromTo(
-        titles[2],
-        {
-          scale: 0.95,
-          yPercent: 5,
-        },
-        {
-          scale: 1,
-          yPercent: 0,
-          duration: 0.3,
-          ease: "none",
-        },
-        "<"
-      );
-
-      // =========================
-      // FILET HOLD
-      // =========================
-
-      tl.to(steaks[2], {
-        scale: 1.05,
-        yPercent: -2,
-        duration: 0.8,
-        ease: "none",
-      });
-
-      tl.to(
-        titles[2],
         {
           scale: 1.03,
           yPercent: -2,
           duration: 0.8,
           ease: "none",
         },
-        "<"
+        0
       );
+
+      // ALL TRANSITIONS
+      dishes.forEach((_, index) => {
+        if (index === dishes.length - 1) return;
+
+        const currentScene = scenes[index];
+        const nextScene = scenes[index + 1];
+
+        const nextImage = images[index + 1];
+        const nextTitle = titles[index + 1];
+
+        // CURRENT OUT
+        tl.to(currentScene, {
+          opacity: 0,
+          duration: 0.16,
+          ease: "none",
+        });
+
+        tl.set(currentScene, {
+          visibility: "hidden",
+        });
+
+        // SMALL BLACK PAUSE
+        tl.to({}, { duration: 0.06 });
+
+        // NEXT SCENE
+        tl.set(nextScene, {
+          visibility: "visible",
+        });
+
+        tl.fromTo(
+          nextScene,
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 0.16,
+            ease: "none",
+          }
+        );
+
+        // NEXT DISH ENTER
+        tl.fromTo(
+          nextImage,
+          {
+            scale: 0.86,
+            yPercent: 10,
+            rotate: index % 2 === 0 ? -2 : 2,
+          },
+          {
+            scale: 1,
+            yPercent: 0,
+            rotate: 0,
+            duration: 0.3,
+            ease: "none",
+          },
+          "<"
+        );
+
+        // NEXT TITLE ENTER
+        tl.fromTo(
+          nextTitle,
+          {
+            scale: 0.95,
+            yPercent: 5,
+          },
+          {
+            scale: 1,
+            yPercent: 0,
+            duration: 0.3,
+            ease: "none",
+          },
+          "<"
+        );
+
+        // HOLD
+        tl.to(nextImage, {
+          scale: 1.05,
+          yPercent: -2,
+          duration: 0.72,
+          ease: "none",
+        });
+
+        tl.to(
+          nextTitle,
+          {
+            scale: 1.025,
+            yPercent: -2,
+            duration: 0.72,
+            ease: "none",
+          },
+          "<"
+        );
+      });
     }, section);
 
     return () => ctx.revert();
   }, []);
+
+  // OPEN CINEMATIC FROM REGULAR MENU
   useEffect(() => {
-  const handleOpenSignature = (
-    event: Event
-  ) => {
-    const customEvent = event as CustomEvent<string>;
-    const dish = customEvent.detail;
+    const handleOpenSignature = (event: Event) => {
+      const customEvent = event as CustomEvent<string>;
+      const name = customEvent.detail;
 
-    const section = sectionRef.current;
+      const section = sectionRef.current;
+      if (!section) return;
 
-    if (!section) return;
+      const index = dishes.findIndex((dish) => dish.name === name);
 
-    const sectionTop = section.offsetTop;
-    const scrollDistance =
-      section.offsetHeight - window.innerHeight;
+      if (index === -1) return;
 
-    const positions: Record<string, number> = {
-      RIBEYE: 0.05,
-      TOMAHAWK: 0.48,
-      FILET: 0.83,
+      const sectionTop = section.offsetTop;
+      const scrollDistance = section.offsetHeight - window.innerHeight;
+
+      const progress =
+        dishes.length === 1 ? 0 : index / (dishes.length - 1);
+
+      const target =
+        sectionTop +
+        scrollDistance * Math.min(progress * 0.94 + 0.02, 0.96);
+
+      window.scrollTo({
+        top: target,
+        behavior: "smooth",
+      });
     };
 
-    const progress = positions[dish];
-
-    if (progress === undefined) return;
-
-    const target =
-      sectionTop + scrollDistance * progress;
-
-    window.scrollTo({
-      top: target,
-      behavior: "smooth",
-    });
-  };
-
-  window.addEventListener(
-    "open-signature-dish",
-    handleOpenSignature
-  );
-
-  return () => {
-    window.removeEventListener(
+    window.addEventListener(
       "open-signature-dish",
       handleOpenSignature
     );
-  };
-}, []);
+
+    return () =>
+      window.removeEventListener(
+        "open-signature-dish",
+        handleOpenSignature
+      );
+  }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative h-[430vh] bg-black text-white md:h-[450vh]"
+      className="
+        relative
+        h-[760vh]
+        bg-black
+        text-white
+        md:h-[800vh]
+      "
     >
       <div className="sticky top-0 h-[100svh] w-full overflow-hidden bg-black">
 
@@ -467,7 +363,15 @@ export default function MenuExperience() {
             <img
               src={dish.bg}
               alt=""
-              className="absolute inset-0 z-0 h-full w-full object-cover object-center"
+              className="
+                absolute
+                inset-0
+                z-0
+                h-full
+                w-full
+                object-cover
+                object-center
+              "
             />
 
             {/* DARK OVERLAY */}
@@ -524,8 +428,7 @@ export default function MenuExperience() {
                   font-serif
                   leading-none
                   tracking-[-0.08em]
-                  text-white/90
-                  drop-shadow-[0_4px_25px_rgba(0,0,0,0.55)]
+                  text-white/78
                   ${dish.titleClass}
                 `}
               >
@@ -533,7 +436,7 @@ export default function MenuExperience() {
               </h2>
             </div>
 
-            {/* STEAK */}
+            {/* DISH */}
             <div
               className={`
                 pointer-events-none
@@ -543,12 +446,12 @@ export default function MenuExperience() {
                 z-20
                 -translate-x-1/2
                 -translate-y-1/2
-                ${dish.steakClass}
+                ${dish.dishClass}
               `}
             >
               <img
                 ref={(el) => {
-                  steakRefs.current[index] = el;
+                  dishRefs.current[index] = el;
                 }}
                 src={dish.cutout}
                 alt={dish.name}
@@ -565,9 +468,6 @@ export default function MenuExperience() {
 
             {/* INFO */}
             <div
-              ref={(el) => {
-                infoRefs.current[index] = el;
-              }}
               className="
                 absolute
                 bottom-0
@@ -599,82 +499,23 @@ export default function MenuExperience() {
                   <div className="hidden h-10 w-px bg-white/30 md:block" />
 
                   <div>
-                    <p
-                      className="
-                        mb-2
-                        text-[8px]
-                        font-medium
-                        uppercase
-                        tracking-[0.38em]
-                        text-white/70
-                        sm:text-[9px]
-                        md:text-[10px]
-                        md:tracking-[0.5em]
-                      "
-                    >
-                      {dish.subtitle}
+                    <p className="mb-2 text-[8px] font-medium uppercase tracking-[0.38em] text-white/70 sm:text-[9px] md:text-[10px]">
+                      {dish.number} · {dish.subtitle}
                     </p>
 
-                    <p
-                      className="
-                        text-[10px]
-                        leading-relaxed
-                        tracking-[0.12em]
-                        text-white/90
-                        sm:text-[11px]
-                        md:text-xs
-                        md:tracking-[0.18em]
-                        lg:text-sm
-                      "
-                    >
+                    <p className="max-w-md text-xs leading-5 text-white/50 sm:text-sm">
                       {dish.description}
                     </p>
                   </div>
                 </div>
 
-                <p
-                  className="
-                    text-[11px]
-                    font-medium
-                    tracking-[0.2em]
-                    text-white
-                    sm:text-xs
-                    md:text-sm
-                    md:tracking-[0.25em]
-                  "
-                >
+                <p className="text-[11px] tracking-[0.18em] text-white/90 md:text-sm">
                   {dish.price}
                 </p>
               </div>
             </div>
           </div>
         ))}
-
-        {/* BRAND MARK */}
-        <div
-          className="
-            absolute
-            bottom-[92px]
-            left-5
-            z-[100]
-            flex
-            h-10
-            w-10
-            items-center
-            justify-center
-            rounded-full
-            border
-            border-white/30
-            font-serif
-            text-sm
-            text-white/90
-            md:bottom-8
-            md:h-12
-            md:w-12
-          "
-        >
-          N
-        </div>
       </div>
     </section>
   );
