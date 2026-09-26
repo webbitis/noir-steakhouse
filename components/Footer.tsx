@@ -104,9 +104,7 @@ export default function Footer() {
           <div className="flex gap-6">
             
 
-            <a href="#" className="transition hover:text-white/70">
-              Privacy
-            </a>
+            
           </div>
             <p className="text-[9px] uppercase tracking-[0.28em] text-white/30">
   Digital experience by{" "}
