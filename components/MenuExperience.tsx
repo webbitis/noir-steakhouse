@@ -405,35 +405,37 @@ export default function MenuExperience() {
 
             {/* TITLE */}
             <div
-              className="
-                pointer-events-none
-                absolute
-                inset-x-0
-                top-[33%]
-                z-10
-                flex
-                -translate-y-1/2
-                justify-center
-                overflow-hidden
-                md:top-[31%]
-              "
-            >
-              <h2
-                ref={(el) => {
-                  titleRefs.current[index] = el;
-                }}
-                className={`
-                  select-none
-                  whitespace-nowrap
-                  font-serif
-                  leading-none
-                  tracking-[-0.08em]
-                  text-white/78
-                  ${dish.titleClass}
-                `}
-              >
-                {dish.name}
-              </h2>
+  className="
+    pointer-events-none
+    absolute
+    inset-x-0
+    top-[18%]
+    z-10
+    flex
+    justify-center
+    px-2
+    md:top-[20%]
+  "
+>
+             <h2
+  className="
+    max-w-[92vw]
+    px-4
+    text-center
+    font-serif
+    leading-[0.9]
+    tracking-[-0.06em]
+    text-white/70
+    whitespace-normal
+    break-words
+    text-[12vw]
+    sm:text-[10vw]
+    md:text-[7vw]
+    lg:text-[5vw]
+  "
+>
+  {dish.name}
+</h2>
             </div>
 
             {/* DISH */}
